@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string("name");
             $table->text("description")->nullable();
             $table->string("image");
-            $table->foreignIdFor(Author::class);
             $table->timestamps();
         });
     }

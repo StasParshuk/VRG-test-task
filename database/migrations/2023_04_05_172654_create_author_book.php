@@ -15,8 +15,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('book_id');
             $table->unsignedBigInteger('author_id');
-            $table->foreign('book_id')->references('id')->on('books');
-            $table->foreign('author_id')->references('id')->on('authors');
+            $table->foreign('book_id')->on('books')->references('id');
+            $table->foreign('author_id')->on('authors')->references('id');
             $table->index('book_id','author_book_book_fk');
             $table->index('author_id','author_book_author_fk');
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('authors_books');
     }
 };
