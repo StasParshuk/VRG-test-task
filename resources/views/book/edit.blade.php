@@ -2,8 +2,8 @@
 
 
 @section('content')
-<h1>Category index</h1>
-<a href="{{ route('book.create')}}">Create New Book</a>
+<h1>boo edit</h1>
+
 <table class="table col-12">
     <thead>
     <tr>
@@ -17,14 +17,12 @@
     </tr>
     </thead>
     <tbody>
-    @if($books === null)
+    @if($book === null)
 
         <tr>
             <td colspan="4">no records found</td>
         </tr>
     @endif
-
-    @foreach($books as $book)
     <tr>
         <td>{{ $book->id }}</td>
         <td>{{ $book->name }}</td>
@@ -37,13 +35,17 @@
             @endforeach
         </td>
         <td>
-
-            <a href="{{ route('book.show', ['book' => $book->id]) }}">show</a>
+            <a href="{{ route('book.update', ['book' => $book->id]) }}">update</a>
+            <form action="{{ route('book.destroy', ['book' => $book->id]) }}" method="post">
+                <input class="btn btn-default" type="submit" value="Delete" />
+                <input type="hidden" name="_method" value="delete" />
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </form>
         </td>
     </tr>
 
-    @endforeach
     </tbody>
 </table>
 @endsection
+{{--<a href="{{ path('app_category_new') }}">Create new</a>--}}
 

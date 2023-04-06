@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Symfony\Component\Console\Input\Input;
+
 
 return [
 
@@ -209,6 +211,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Input' => Input::class
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

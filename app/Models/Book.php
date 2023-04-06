@@ -13,19 +13,14 @@ class Book extends Model
     protected $guarded = false;
     protected $table = "books";
 
+    private ?int $id;
+    private ?string $name;
+    private ?string $description;
+    private  $created_at;
+    private  $updated_at;
+
     public function authors()
     {
         return $this->belongsToMany(Author::class, "authors_books", 'book_id', 'author_id');
     }
-//
-//    public function getAuthorName()
-//    {
-//        $authors = $this->author();
-//        foreach ($authors as $author) {
-//            dd($author->firstName);
-//            $arr[] = $author->firstname;
-//        };
-//        return $arr;
-//
-//    }
 }
