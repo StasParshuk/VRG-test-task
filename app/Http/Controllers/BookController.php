@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use Illuminate\View\View;
-use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class BookController extends Controller
@@ -15,10 +14,10 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): \Inertia\Response
+    public function index():View
     {
       $books = Book::with("authors")->get();
-      return Inertia::render("book/Index",$books);
+      return view("book.index",compact('books'));
     }
 
     /**
