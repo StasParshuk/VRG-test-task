@@ -43,7 +43,7 @@ class BookController extends Controller
         $authors = $data["author"];
         unset($data["author"]);
 
-        $data->image = ImageSaveService::saveImage($request->file('image' ), 'book' , 'public');
+        $data['image'] = ImageSaveService::saveImage($request->file('image' ), 'book' , 'public');
         $book = Book::create($data);
         $book->authors()->sync($authors);
         $authors = $book->authors;

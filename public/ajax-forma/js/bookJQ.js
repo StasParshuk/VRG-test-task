@@ -12,29 +12,39 @@ jQuery(document).ready(function($){
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
             }
         });
+        var image = jQuery('#image').prop('files')[0];
         e.preventDefault();
-        var formData = {
-            name: jQuery('#name').val(),
-            description: jQuery('#description').val(),
-            image: jQuery('#image').val(),
-            author: jQuery('#authors').val(),
-        };
+        var formData = new FormData();
+
+
+        var name = jQuery('#name').val();
+        var description = jQuery('#description').val();
+        var author = jQuery('#authors').val();
+
+        formData.append('image', image)
+        formData.append('name', name)
+        formData.append('description', description)
+        formData.append('author', author)
+
         var state = jQuery('#btn-save').val();
-        var type = "POST";
         var todo_id = jQuery('#todo_id').val();
-        var ajaxurl = 'book/create';
+
         $.ajax({
-            type: type,
-            url: ajaxurl,
+            type: 'POST',
+            url: 'book/create',
             data: formData,
             dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function (data) {
 
                 var todo =
                     '<tr id="todo' + data.id + '">' +
                     '<td>' + data.id + '</td>' +
                     '<td>' + data.name + '</td>' +
-                    '<td>' + data.image + '</td>' +
+                    '<td>' + data.description + '</td>' +
+                    '<td>' + '<img src="storage/' + data.image + '" className="img-fluid"  width="200px" height="200px" alt="no found">' + '</td>' +
                     '<td>' + new Date(data.created_at).toJSON().split('.')[0].split('T').join(' ') + '</td>' +
                     '<td>' + new Date(data.updated_at).toJSON().split('.')[0].split('T').join(' ') + '</td>' +
                     '<td>' + data.authors[0].first_name + data.authors[0].last_surname + data.authors[0].father_name + '</td>' +
