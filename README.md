@@ -30,3 +30,10 @@
 -Back-end использовать Yii2 или Laravel.
 Визуальное оформление на усмотрение того, кто выполняет.
 Предоставить ссылку на репозиторий с инструкцией для развертывания проекта.
+
+
+# установка/
+1. ./vendor/bin/sail up
+2. /vendor/bin/sail composer install
+3. /vendor/bin/sail artisan  migrate
+3. http://localhost:771

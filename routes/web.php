@@ -38,7 +38,7 @@ $author = static function () {
 };
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.main');
 });
 
 Route::name("book")->group($book);
