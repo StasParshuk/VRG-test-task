@@ -11,7 +11,7 @@ class StoreAuthorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreAuthorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "first_name" => "required",
+            "last_surname" => "required",
+            "father_name" => "required",
+            "book" => "required",
         ];
     }
 }

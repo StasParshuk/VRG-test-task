@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Kyslik\ColumnSortable\Sortable;
 
 class Book extends Model
 {
-    use HasFactory;
+    use HasFactory,Sortable;
 
     protected $guarded = false;
     protected $table = "books";
+
+    public $sortable = ['id', 'name', 'description', 'created_at', 'updated_at'];
 
     private ?int $id;
     private ?string $name;
